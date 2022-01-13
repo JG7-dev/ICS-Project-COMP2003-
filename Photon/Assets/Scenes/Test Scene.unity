@@ -538,6 +538,7 @@ GameObject:
   - component: {fileID: 994261672}
   - component: {fileID: 994261671}
   - component: {fileID: 994261670}
+  - component: {fileID: 994261674}
   - component: {fileID: 994261673}
   m_Layer: 0
   m_Name: PlayerCamera
@@ -657,12 +658,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clampInDegrees: {x: 360, y: 180}
-  lockCursor: 1
-  sensitivity: {x: 0.5, y: 0.5}
+  lockCursor: 0
+  sensitivity: {x: 2, y: 2}
   smoothing: {x: 3, y: 3}
   targetDirection: {x: 0, y: 0}
   targetCharacterDirection: {x: 0, y: 0}
-  characterBody: {fileID: 676086356}
+  characterBody: {fileID: 0}
+--- !u!114 &994261674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994261668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afff7494caac4a74e9b680c1220eabb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 2
 --- !u!1 &1238765015
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] private MoveSettings _settings = null;
+    [SerializeField] private MoveSettings _settings;
+    private CharacterController _controller;
 
     private Vector3 _moveDirection;
-    private CharacterController _controller;
 
     private void Awake()
     {
@@ -26,19 +26,16 @@ public class PlayerMove : MonoBehaviour
     {
         if (_controller.isGrounded)
         {
-            Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            var input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-            if (input.x != 0 && input.y != 0)
-            {
-                input *= 0.777f;
-            }
+            if (input.x != 0 && input.y != 0) input *= 0.777f;
 
             _moveDirection.x = input.x * _settings.speed;
             _moveDirection.z = input.y * _settings.speed;
             _moveDirection.y = -_settings.antiBump;
 
             _moveDirection = transform.TransformDirection(_moveDirection);
-            
+
             /*
             if (Input.GetKey(KeyCode.Space))
             {

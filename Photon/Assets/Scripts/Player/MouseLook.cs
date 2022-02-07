@@ -2,23 +2,22 @@
 
 public class MouseLook : MonoBehaviour
 {
-    Vector2 _mouseAbsolute;
-    Vector2 _smoothMouse;
+    [SerializeField] private Vector2 clampInDegrees = new Vector2(360, 180);
+    [SerializeField] private bool lockCursor;
 
-    [SerializeField] Vector2 clampInDegrees = new Vector2(360, 180);
-    [SerializeField] bool lockCursor;
-   
-    [SerializeField] Vector2 sensitivity = new Vector2(2, 2);
-    [SerializeField] Vector2 smoothing = new Vector2(3, 3);
-    [SerializeField] Vector2 targetDirection;
-    [SerializeField] Vector2 targetCharacterDirection;
+    [SerializeField] private Vector2 sensitivity = new Vector2(2, 2);
+    [SerializeField] private Vector2 smoothing = new Vector2(3, 3);
+    [SerializeField] private Vector2 targetDirection;
+    [SerializeField] private Vector2 targetCharacterDirection;
 
 
     // Assign this if there's a parent object controlling motion, such as a Character Controller.
     // Yaw rotation will affect this object instead of the camera if set.
     public GameObject characterBody;
+    private Vector2 _mouseAbsolute;
+    private Vector2 _smoothMouse;
 
-    void Start()
+    private void Start()
     {
         // Set target direction to the camera's initial orientation.
         targetDirection = transform.localRotation.eulerAngles;
@@ -26,16 +25,12 @@ public class MouseLook : MonoBehaviour
         // Set target direction for the character body to its inital state.
         if (characterBody)
             targetCharacterDirection = characterBody.transform.localRotation.eulerAngles;
-       
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         // Ensure the cursor is always locked when set
-        if (lockCursor)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
+        if (lockCursor) Cursor.lockState = CursorLockMode.Locked;
 
         // Allow the script to clamp based on a desired target value.
         var targetOrientation = Quaternion.Euler(targetDirection);
@@ -62,7 +57,8 @@ public class MouseLook : MonoBehaviour
         if (clampInDegrees.y < 360)
             _mouseAbsolute.y = Mathf.Clamp(_mouseAbsolute.y, -clampInDegrees.y * 0.5f, clampInDegrees.y * 0.5f);
 
-        transform.localRotation = Quaternion.AngleAxis(-_mouseAbsolute.y, targetOrientation * Vector3.right) * targetOrientation;
+        transform.localRotation = Quaternion.AngleAxis(-_mouseAbsolute.y, targetOrientation * Vector3.right) *
+                                  targetOrientation;
 
         // If there's a character body that acts as a parent to the camera
         if (characterBody)
@@ -72,7 +68,7 @@ public class MouseLook : MonoBehaviour
         }
         else
         {
-            var yRotation = Quaternion.AngleAxis(_mouseAbsolute.x, transform.InverseTransformDirection(Vector3.up));          
+            var yRotation = Quaternion.AngleAxis(_mouseAbsolute.x, transform.InverseTransformDirection(Vector3.up));
             transform.localRotation *= yRotation;
         }
     }

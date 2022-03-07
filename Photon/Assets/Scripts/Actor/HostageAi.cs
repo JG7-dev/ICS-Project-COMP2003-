@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HostageAi : MonoBehaviour
+public class HostageAI : MonoBehaviour
 {
     bool attention = false;
     Transform user;

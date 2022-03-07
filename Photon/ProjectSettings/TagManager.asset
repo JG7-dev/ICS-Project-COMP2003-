@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Sniper1
+  - Sniper2
+  - Sniper3
   layers:
   - Default
   - TransparentFX

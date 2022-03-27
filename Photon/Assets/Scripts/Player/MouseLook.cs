@@ -11,8 +11,6 @@ public class MouseLook : MonoBehaviour
     [SerializeField] private Vector2 targetCharacterDirection;
 
 
-    // Assign this if there's a parent object controlling motion, such as a Character Controller.
-    // Yaw rotation will affect this object instead of the camera if set.
     public GameObject characterBody;
     private Vector2 _mouseAbsolute;
     private Vector2 _smoothMouse;

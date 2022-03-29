@@ -52,7 +52,7 @@ public class MapBehaviour : MonoBehaviour
         GameObject _targetObject;
         Vector3 _defaultPoss = new Vector3(0, 0, 0);
         var _defaultRot = Quaternion.Euler(0, 0, 0);
-        Vector3 _defaultScale = new Vector3(1f, 0.01f, 1f);
+        Vector3 _defaultScale = new Vector3(0.3f, 0.005f, 0.3f);
 
         _targetObject = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
         _targetObject.transform.SetParent(gameObject.transform);

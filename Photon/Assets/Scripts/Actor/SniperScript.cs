@@ -9,12 +9,15 @@ public class SniperScript : MonoBehaviour
     private int currentHP = 100;
     private int fullAmmo = 12;
     private int currentAmmo;
-    public Text ammoCounter = Sniper1HUD.GetComponent<Text>();
+    public GameObject Sniper1HUD;
+    public Text ammoCounter;
     public Slider HealthBar;
     private bool hit = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        ammoCounter = Sniper1HUD.GetComponent<Text>();
         currentAmmo = fullAmmo;
     }
 
@@ -24,12 +27,12 @@ public class SniperScript : MonoBehaviour
         if(Input.GetMouseButtonDown(0) || currentAmmo == 0)
         {
             currentAmmo--;
-            ammoCounter.Text = currentAmmo.ToString;
+            ammoCounter.text = currentAmmo.ToString();
         }
         else if (Input.GetButton("R"))
         {
             currentAmmo = fullAmmo;
-            ammoCounter.Text = currentAmmo.ToString;
+            ammoCounter.text = currentAmmo.ToString();
         }
         if (hit == true)
         {

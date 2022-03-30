@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HostageAI : MonoBehaviour
 {
+    private int maxHP = 100;
+    private int currentHP = 100;
     bool attention = false;
     Transform user;
     // Start is called before the first frame update

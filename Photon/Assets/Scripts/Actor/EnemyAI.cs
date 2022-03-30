@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    private int maxHP = 100;
+    private int currentHP = 100;
     bool ongaurd = false;
     bool offensive = false;
     

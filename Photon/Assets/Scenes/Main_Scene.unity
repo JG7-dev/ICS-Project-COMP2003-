@@ -432,7 +432,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!114 &270946019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2323,7 +2323,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9bd8d669afb492ea5239041f09d8f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mat: {fileID: 0}
 --- !u!1 &1888158973 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2144252446805232203, guid: e1bf73a1e67425942b0f65f6aa77befa, type: 3}

@@ -1003,8 +1003,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberofbuttons: 5
-  canvas: {fileID: 7626258746464501980}
+  buttonContainer: {fileID: 4447022718197330119}
   button: {fileID: 5069952144952085359, guid: 533d2ffeb73cb7b4aa2f705b2a6e312b, type: 3}
+  buttons: []
+  textOnScreen: {fileID: 1949093765865936041, guid: 8eec656927107a04b9075e64740799a8, type: 3}
+  textContainter: {fileID: 4447022718303296464}
+  dialogue: []
 --- !u!222 &4447022718197330113
 CanvasRenderer:
   m_ObjectHideFlags: 0

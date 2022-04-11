@@ -17,7 +17,7 @@ public class CreateButtons : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string path = "Assets/Resources/LorumIpsum.txt";
+        string path = "Assets/BucketHat/Resources/LorumIpsum.txt";
         foreach (string line in System.IO.File.ReadLines(path))
         {
             dialogue.Add(line);

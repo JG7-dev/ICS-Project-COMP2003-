@@ -1,35 +1,80 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CreateButtons : MonoBehaviour
 {
     public int numberofbuttons;
-    public GameObject canvas;
-
+    public Transform buttonContainer;
     public GameObject button;
+    public List<GameObject> buttons;
+    public GameObject textOnScreen;
+    public Transform textContainter;
+
+    public List<string> dialogue;
 
     // Start is called before the first frame update
-    private void Start()
+    void Start()
     {
-        if (numberofbuttons > 0)
+        string path = "Assets/BucketHat/Resources/LorumIpsum.txt";
+        foreach (string line in System.IO.File.ReadLines(path))
         {
-            var distance = 200;
-            var startpos = (int) (distance * -((numberofbuttons - 0.5f) / 2));
-            for (var i = 0; i < numberofbuttons; i++)
-            {
-                var newButton = Instantiate(button);
-                newButton.transform.SetParent(canvas.transform);
-                var heightdiv2 = canvas.GetComponent<RectTransform>().rect.height / 2;
-                var widthdiv2 = canvas.GetComponent<RectTransform>().rect.width / 2;
-                newButton.transform.position = newButton.transform.position +
-                                               new Vector3(startpos + widthdiv2 + i * distance, heightdiv2, 0);
-                newButton.GetComponentInChildren<Text>().text = i.ToString();
-            }
+            dialogue.Add(line);
         }
+        CreateNumberOfButtons(numberofbuttons);
+
+
+    }
+    
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 
-    // Update is called once per frame
-    private void Update()
+    public void CreateButton(string textOnButton, string textToPrint)
     {
+        GameObject newButton = Instantiate(button) as GameObject;
+        newButton.transform.SetParent(buttonContainer);
+        buttons.Add(newButton);
+        newButton.GetComponentInChildren<Text>().text = textOnButton;
+        newButton.GetComponentInChildren<Button>().onClick.AddListener(() => PrintText(textToPrint));
+        newButton.GetComponentInChildren<Button>().onClick.AddListener(() => DestroyOldButtons());
+        newButton.GetComponentInChildren<Button>().onClick.AddListener(() => CreateNumberOfButtons(Random.Range(1, 6)));
+
+    }
+
+    public void CreateNumberOfButtons(int buttonsToCreate)
+    {
+        if (buttonsToCreate > 0)
+        {
+            for (int i = 0; i < buttonsToCreate; i++)
+            {
+                CreateButton(i.ToString(), dialogue[Random.Range(0,dialogue.Count)]);
+            }
+        }
+
+    }
+
+    public void PrintText(string textToPrint)
+    {
+        Debug.Log(textToPrint);
+        GameObject newText = Instantiate(textOnScreen) as GameObject;
+        newText.transform.SetParent(textContainter);
+        string logText = textToPrint;
+        newText.GetComponentInChildren<Text>().text = logText;
+        SoundManager.PlaySound();
+    }
+
+    public void DestroyOldButtons()
+    {
+        List<GameObject> oldButtons = buttons;
+
+        foreach (GameObject button in oldButtons)
+        {
+            Destroy(button);
+        }
+
     }
 }

@@ -7,16 +7,16 @@ public class PlayerLook : MonoBehaviour
 {
     public Camera _camera;
 
-    [SerializeField] private float xRotation = 0f, xSensitivity = 100f, ySensitivity = 5f;
-
+    [SerializeField] private float _xRotataion = 0f, _xSensitivity = 30f, _ySensitivity = 30f;
+    
     public void ProcessLook(Vector2 input)
     {
-        float mouseX = input.x;
-        float mouseY = input.y;
+        float mouseX = input.x, mouseY = input.y;
 
-        xRotation -= (mouseY * Time.deltaTime) * ySensitivity;
-        xRotation = Mathf.Clamp(xRotation, -5f, 2f);
-        _camera.transform.localRotation = quaternion.Euler(xRotation,0,0);
-        transform.Rotate(Vector3.up*(mouseX*Time.deltaTime)* xSensitivity);
+        _xRotataion -= (mouseY * Time.deltaTime) * _ySensitivity;
+        _xRotataion = Mathf.Clamp(_xRotataion, -80, 80);
+        _camera.transform.localRotation = quaternion.Euler(_xRotataion,0,0);
+        transform.Rotate(Vector3.up * (mouseX * Time.deltaTime) * _xSensitivity);
+
     }
 }

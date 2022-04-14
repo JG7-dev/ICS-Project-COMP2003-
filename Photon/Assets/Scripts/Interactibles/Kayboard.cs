@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Keyboard : Interactable
+public class Kayboard : Interactable
 {
     // Start is called before the first frame update
     void Start()
@@ -15,8 +15,9 @@ public class Keyboard : Interactable
     {
         
     }
+
     protected override void Interact()
     {
-        Debug.Log("Interacted with " + gameObject.name);
+        Debug.Log("interacted with" + gameObject.name);
     }
 }

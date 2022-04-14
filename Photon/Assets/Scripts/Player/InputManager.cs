@@ -7,7 +7,8 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     private PlayerInput _playerInput;
-    private PlayerInput.PlayerControllerActions _playerControllerActions;
+    public PlayerInput.OnFootActions _onFootActions;
+
     private PlayerMotor _motor;
     private PlayerLook _look;
     
@@ -15,7 +16,7 @@ public class InputManager : MonoBehaviour
     void Awake()
     {
         _playerInput = new PlayerInput();
-        _playerControllerActions = _playerInput.PlayerController;
+        _onFootActions = _playerInput.OnFoot;
         _motor = GetComponent<PlayerMotor>();
         _look = GetComponent<PlayerLook>();
     }
@@ -23,21 +24,21 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        _motor.ProcessMove(_playerControllerActions.Movement.ReadValue<Vector2>());
+        _motor.ProcessMove(_onFootActions.Movement.ReadValue<Vector2>());
     }
 
     private void LateUpdate()
     {
-        _look.ProcessLook(_playerControllerActions.Look.ReadValue<Vector2>());
+        _look.ProcessLook(_onFootActions.Look.ReadValue<Vector2>());
     }
 
     private void OnEnable()
     {
-        _playerControllerActions.Enable();
+        _onFootActions.Enable();
     }
 
     private void OnDisable()
     {
-        _playerControllerActions.Disable();
+        _onFootActions.Disable();
     }
 }

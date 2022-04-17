@@ -1,6 +1,0 @@
-Meetings held (Week beginning with):
-1st November 2021 - Discussion on how we will develop the assigned project according to the brief
-22th November 2021 - Discussion about what the client's project was and issues with it
-29th November 2021 - Discussion of what Game Engine we should use and issues we still had
-6th December 2021 - Discussion about issues and how we can solve them and sending an email to the client regarding what was discussed
-

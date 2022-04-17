@@ -1,0 +1,9 @@
+Meetings held (Week beginning with):
+1st November 2021 - Discussion on how we will develop the assigned project according to the brief
+22th November 2021 - Discussion about what the client's project was and issues with it
+29th November 2021 - Discussion of what Game Engine we should use and issues we still had
+6th December 2021 - Discussion about issues and how we can solve them and sending an email to the client regarding what was discussed
+23 February 2022 - Discussion between both of the teams to discuss work to date, implemented the idea of moving sprints to 2w instead of 1w
+02 March 2022 - Discussion of work to date between both of the groups, moved sprints to 2w instead of 1w
+08 April 2022 - Discussion of work up to date between both of the groups, merged the work of Bucked and Photon, discussed on system changes and future plan
+15th April 2022 - Discussed the following plan for the remaining time, altered and extended the sprints and discussed who fills in which tasks, figured work to date with both of the teams

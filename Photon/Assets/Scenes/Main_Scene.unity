@@ -532,6 +532,7 @@ GameObject:
   - component: {fileID: 270946019}
   - component: {fileID: 270946020}
   - component: {fileID: 270946021}
+  - component: {fileID: 270946022}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -551,6 +552,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 975b080433b661f47af4c8f841788e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrounded: 0
+  gravity: -9.8
 --- !u!114 &270946014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,6 +696,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _promptText: {fileID: 796594981}
+--- !u!114 &270946022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270946012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 967419ba32f1b894883d3bf76b5e72b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _negotiatorHUD: {fileID: 7701549498385113533, guid: 0ece716733f34414699d0b7ce07a7e61, type: 3}
+  _sniper1HUD: {fileID: 7701549498385113533, guid: df59e0789c58bc04ebac2490a8b71153, type: 3}
+  _sniper2HUD: {fileID: 7701549498385113533, guid: 29145e59ad2c3514ea900d6c3621bfb6, type: 3}
+  _sniper3HUD: {fileID: 7701549498385113533, guid: cd887724ad442804691b31d2d16167b5, type: 3}
+  _selectionIcon: {fileID: 5193017820677883887, guid: 1e9ec0c47e3041646a3d7956e5270739, type: 3}
+  _canvas: {fileID: 720834606}
 --- !u!1 &323790160
 GameObject:
   m_ObjectHideFlags: 0

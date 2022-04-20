@@ -8,6 +8,7 @@ TagManager:
   - Sniper1
   - Sniper2
   - Sniper3
+  - Hostage
   layers:
   - Default
   - TransparentFX

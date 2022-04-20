@@ -6,16 +6,21 @@ public class MapBehaviour : MonoBehaviour
     [SerializeField] private Material _greenMaterial;
     [SerializeField] private Material _redMaterial;
     [SerializeField] private Material _blueMaterial;
+    [SerializeField] private Material _brownMaterial;
+
     private GameObject _playerMapMarker;
     private GameObject _enemyMapMarker;
     private GameObject _sniper1MapMarker;
     private GameObject _sniper2MapMarker;
     private GameObject _sniper3MapMarker;
+    private GameObject _hostageMapMarker;
+    
     private GameObject _playerController;
     private GameObject _enemyController;
     private GameObject _sniper1Controller;
     private GameObject _sniper2Controller;
     private GameObject _sniper3Controller;
+    private GameObject _hostageController;
 
     // Start is called before the first frame update
     private void Start()
@@ -25,6 +30,7 @@ public class MapBehaviour : MonoBehaviour
         _sniper1Controller = GameObject.FindGameObjectWithTag("Sniper1");
         _sniper2Controller = GameObject.FindGameObjectWithTag("Sniper2");
         _sniper3Controller = GameObject.FindGameObjectWithTag("Sniper3");
+        _hostageController = GameObject.FindGameObjectWithTag("Hostage");
         _mapMarkerInitialization();
     }
 
@@ -36,6 +42,7 @@ public class MapBehaviour : MonoBehaviour
         _updatePos(_sniper1Controller, _sniper1MapMarker);
         _updatePos(_sniper2Controller, _sniper2MapMarker);
         _updatePos(_sniper3Controller, _sniper3MapMarker);
+        _updatePos(_hostageController, _hostageMapMarker);
     }
 
     private void _mapMarkerInitialization() 
@@ -45,6 +52,7 @@ public class MapBehaviour : MonoBehaviour
         _sniper1MapMarker = _mapMarkerCreation("Sniper1");
         _sniper2MapMarker = _mapMarkerCreation("Sniper2");
         _sniper3MapMarker = _mapMarkerCreation("Sniper3");
+        _hostageMapMarker = _mapMarkerCreation("Hostage");
     }
 
     private GameObject _mapMarkerCreation(string tag)
@@ -84,6 +92,11 @@ public class MapBehaviour : MonoBehaviour
         {
             _targetObject.name = "EnemyMapMarker";
             _targetObject.GetComponent<Renderer>().material = _redMaterial;
+        }
+        else if (tag == "Hostage")
+        {
+            _targetObject.name = "HostageMapMarker";
+            _targetObject.GetComponent<Renderer>().material = _brownMaterial;
         }
         return _targetObject;
     }

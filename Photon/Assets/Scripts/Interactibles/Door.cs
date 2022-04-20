@@ -21,7 +21,6 @@ public class Door : Interactable
 
     protected override void Interact()
     {
-        Debug.Log("interacted with" + gameObject.name);
         doorAnimator = GetComponent<Animator>();
         if (isDoorOpen == false)
         {

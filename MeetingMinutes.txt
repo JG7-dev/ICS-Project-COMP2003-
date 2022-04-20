@@ -7,3 +7,4 @@ Meetings held (Week beginning with):
 02 March 2022 - Discussion of work to date between both of the groups, moved sprints to 2w instead of 1w
 08 April 2022 - Discussion of work up to date between both of the groups, merged the work of Bucked and Photon, discussed on system changes and future plan
 15th April 2022 - Discussed the following plan for the remaining time, altered and extended the sprints and discussed who fills in which tasks, figured work to date with both of the teams
+20th April 2022 - Meeting between the project lead and sprint planner of Photon to discuss functionality of implemented functions, cleanup of the unnecessary files and making sure the project is being developed on time

@@ -9,6 +9,7 @@ TagManager:
   - Sniper2
   - Sniper3
   - Hostage
+  - Door
   layers:
   - Default
   - TransparentFX

@@ -16,6 +16,7 @@ public class DirectedGraph : EditorWindow
     public static void OpenDirectedGraphWindow()
     {
         var window = GetWindow<DirectedGraph>();
+
         window.titleContent = new GUIContent("Directed Graph");
     }
     private void OnEnable()

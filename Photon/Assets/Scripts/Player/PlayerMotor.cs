@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
 {
+   
     private CharacterController _controller;
     public bool isGrounded;
     private Vector3 playerVelocity;
@@ -19,11 +20,18 @@ public class PlayerMotor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+       
         isGrounded = _controller.isGrounded;
+
+        
     }
 
     public void ProcessMove(Vector2 input)
     {
+
+       
+
         Vector3 moveDirection = Vector3.zero;
         moveDirection.x = input.x;
         moveDirection.z = input.y;
@@ -34,10 +42,11 @@ public class PlayerMotor : MonoBehaviour
         if (isGrounded && playerVelocity.y < 0)
         {
             playerVelocity.y = -1;
+
         }
         _controller.Move(playerVelocity * Time.deltaTime);
         //Debug.Log(playerVelocity.y);
-        
-        
+       
+
     }
 }

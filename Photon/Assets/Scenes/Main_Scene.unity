@@ -321,6 +321,7 @@ GameObject:
   - component: {fileID: 96602183}
   - component: {fileID: 96602182}
   - component: {fileID: 96602181}
+  - component: {fileID: 96602178}
   m_Layer: 0
   m_Name: Sniper 3
   m_TagString: Sniper3
@@ -342,7 +343,27 @@ Transform:
   - {fileID: 1063234645}
   m_Father: {fileID: 1002202016}
   m_RootOrder: 3
+<<<<<<< Updated upstream
   m_LocalEulerAnglesHint: {x: 0, y: -20.671, z: 0}
+=======
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &96602178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96602176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 641fbe633619de441a68998a9179cd5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 1689665428}
+  zoom: 20
+  normal: 60
+  smooth: 20
+>>>>>>> Stashed changes
 --- !u!136 &96602181
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -534,6 +555,7 @@ GameObject:
   - component: {fileID: 270946020}
   - component: {fileID: 270946021}
   - component: {fileID: 270946022}
+  - component: {fileID: 270946023}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -715,6 +737,22 @@ MonoBehaviour:
   _sniper3HUD: {fileID: 7701549498385113533, guid: cd887724ad442804691b31d2d16167b5, type: 3}
   _selectionIcon: {fileID: 5193017820677883887, guid: 1e9ec0c47e3041646a3d7956e5270739, type: 3}
   _canvas: {fileID: 720834606}
+--- !u!114 &270946023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270946012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 641fbe633619de441a68998a9179cd5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 1689665428}
+  zoom: 20
+  normal: 60
+  smooth: 20
 --- !u!1 &323790160
 GameObject:
   m_ObjectHideFlags: 0
@@ -2523,6 +2561,7 @@ GameObject:
   - component: {fileID: 842600090}
   - component: {fileID: 842600089}
   - component: {fileID: 842600088}
+  - component: {fileID: 842600085}
   m_Layer: 0
   m_Name: Sniper 1
   m_TagString: Sniper1
@@ -2544,7 +2583,27 @@ Transform:
   - {fileID: 393167681}
   m_Father: {fileID: 1002202016}
   m_RootOrder: 1
+<<<<<<< Updated upstream
   m_LocalEulerAnglesHint: {x: 0, y: 16.464, z: 0}
+=======
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &842600085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842600083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 641fbe633619de441a68998a9179cd5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 1689665428}
+  zoom: 20
+  normal: 60
+  smooth: 5
+>>>>>>> Stashed changes
 --- !u!136 &842600088
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2788,6 +2847,7 @@ GameObject:
   - component: {fileID: 1006401432}
   - component: {fileID: 1006401431}
   - component: {fileID: 1006401430}
+  - component: {fileID: 1006401427}
   m_Layer: 0
   m_Name: Sniper 2
   m_TagString: Sniper2
@@ -2809,7 +2869,27 @@ Transform:
   - {fileID: 2085649662}
   m_Father: {fileID: 1002202016}
   m_RootOrder: 2
+<<<<<<< Updated upstream
   m_LocalEulerAnglesHint: {x: 0, y: -51.586, z: 0}
+=======
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1006401427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006401425}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 641fbe633619de441a68998a9179cd5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 1689665428}
+  zoom: 20
+  normal: 60
+  smooth: 20
+>>>>>>> Stashed changes
 --- !u!136 &1006401430
 CapsuleCollider:
   m_ObjectHideFlags: 0

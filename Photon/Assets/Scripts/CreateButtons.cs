@@ -64,7 +64,7 @@ public class CreateButtons : MonoBehaviour
         newText.transform.SetParent(textContainter);
         string logText = textToPrint;
         newText.GetComponentInChildren<Text>().text = logText;
-        SoundManager.PlaySound();
+        
     }
 
     public void DestroyOldButtons()

@@ -11,6 +11,7 @@ using UnityEditor.UIElements;
 public class DirectedGraphView : GraphView
 {
     public readonly Vector2 DefaultNodeSize = new Vector2(150, 200);
+
     public DirectedGraphView()
     {
         styleSheets.Add(Resources.Load<StyleSheet>("DirectedGraph"));
@@ -50,7 +51,7 @@ public class DirectedGraphView : GraphView
         var node = new DGNode
         {
             title = "START",
-            GUID = Guid.NewGuid().ToString(), //Generates an ID using inbuilt Unity system
+            GUID = "START", 
             Entry = true
         };
 
@@ -96,7 +97,9 @@ public class DirectedGraphView : GraphView
         node.titleContainer.Add(buttonOutPort);
 
         //Add Dialog
-        var buttonDialog = new Button(() => { AddDialog(node); });
+        var buttonDialog = new Button(() => {
+            node.NodeDialog.Add(new DGDialog(""));
+            AddDialog(node); });
         buttonDialog.text = "New Dialog";
         node.titleContainer.Add(buttonDialog);
 
@@ -127,14 +130,13 @@ public class DirectedGraphView : GraphView
 
     private void AddDialog(DGNode node, Character overridenCharacter = null, string overriddenDialog = "")
     {
-
         var dialogContainer = new Box();
         node.mainContainer.Add(dialogContainer);
 
-        var characterField = new ObjectField("Character")
-        {
-            objectType = typeof(Character)
-        };
+        var characterField = new ObjectField("Character") { 
+            objectType = typeof(Character),
+            value = overridenCharacter
+        }; //Adds a Character object field
 
 
         var textField = new TextField
@@ -154,13 +156,17 @@ public class DirectedGraphView : GraphView
         dialogContainer.contentContainer.Add(textField);
         dialogContainer.Add(deleteButton);
 
-
-
         node.RefreshExpandedState(); //Refreshes node
+    }
+
+    internal void AddDialog(DGNode node, DGDialog nodeDialog)
+    {
+        AddDialog(node, nodeDialog.character, nodeDialog.dialog);
     }
 
     private void RemoveDialog(DGNode node, Box dialogContainer)
     {
+        node.NodeDialog.RemoveAt(node.mainContainer.IndexOf(dialogContainer) - 2);
         node.mainContainer.Remove(dialogContainer);
         node.RefreshExpandedState(); //Refreshes node
     }
@@ -173,6 +179,7 @@ public class DirectedGraphView : GraphView
     #region OutputPorts
     public void AddOutputPort(DGNode node, string overiddenPortName = "")
     {
+
         var generatedPort = GeneratePort(node, Direction.Output);
 
         var oldLabel = generatedPort.contentContainer.Q<Label>("type");
@@ -192,7 +199,7 @@ public class DirectedGraphView : GraphView
         };
         textField.RegisterValueChangedCallback(evt => generatedPort.portName = evt.newValue);
 
-        generatedPort.contentContainer.Add(new Label("     "));
+        generatedPort.contentContainer.Add(new Label("   "));
 
         generatedPort.contentContainer.Add(textField);
 

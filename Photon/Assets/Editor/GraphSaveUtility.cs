@@ -32,29 +32,35 @@ public class GraphSaveUtility
 
 
         var connectedPorts = Edges.Where(x => x.input.node != null).ToArray();
+
         for (int i = 0; i < connectedPorts.Count(); i++)
         {
             var outputNode = connectedPorts[i].output.node as DGNode;
             var inputNode = connectedPorts[i].input.node as DGNode;
 
+
+
             dgContainer.DGLinkData.Add(new DGLinkData
             {
                 ParentGUID = outputNode.GUID,
                 PortName = connectedPorts[i].output.portName,
+                PortID = connectedPorts[i].output.node.outputContainer.Children().Select(x => x.Q<Port>()).ToList().IndexOf(connectedPorts[i].output),
                 TargetGUID = inputNode.GUID
             });
         }
 
-        foreach (var node in Nodes.Where(node => !node.Entry))
+
+        foreach (var node in Nodes.Where(node => node.GUID != "START"))
         {
             dgContainer.DGNodeData.Add(new DGNodeData
             {
                 NodeGUID = node.GUID,
                 NodeLabel = node.NodeLabel,
                 Position = node.GetPosition().position,
-                NodeDialog = node.NodeDialog
+                NodeDialog = node.NodeDialog,
             });
         }
+
         //endSave Nodes
         //Auto creates DGSaves Folder in Resources if it does not exist already
         if (!AssetDatabase.IsValidFolder("Assets/Resources"))
@@ -83,6 +89,9 @@ public class GraphSaveUtility
 
     private void ConnectNodes()
     {
+        //Iterate through all nodes
+        //Get GUID of node, check list of Links for any 
+
         for (int i = 0; i < Nodes.Count; i++)
         {
             var connections = _containerCache.DGLinkData.Where(x => x.ParentGUID == Nodes[i].GUID).ToList();
@@ -113,7 +122,7 @@ public class GraphSaveUtility
 
     private void CreateNodes()
     {
-        foreach (var nodeData in _containerCache.DGNodeData)
+        foreach (var nodeData in _containerCache.DGNodeData.Where(node => node.NodeGUID != "START")) //START is a unique GUID thanks to Unity's GUID generation
         {
             var tempNode = _graphView.CreateDirectedGraphNode(nodeData.NodeLabel);
             tempNode.GUID = nodeData.NodeGUID;
@@ -122,13 +131,13 @@ public class GraphSaveUtility
 
             var nodePort = _containerCache.DGLinkData.Where(x => x.ParentGUID == nodeData.NodeGUID).ToList();
             nodePort.ForEach(x => _graphView.AddOutputPort(tempNode, x.PortName));
+
+            nodeData.NodeDialog.ForEach(x => _graphView.AddDialog(tempNode,x));
         }
     }
 
     private void ClearGraph()
     {
-        //Set Entry point GUID from save, Destroy existing GUID
-        Nodes.Find(x => x.Entry).GUID = _containerCache.DGLinkData[0].ParentGUID;
         foreach (var node in Nodes)
         {
             //remove Edges connected to Node

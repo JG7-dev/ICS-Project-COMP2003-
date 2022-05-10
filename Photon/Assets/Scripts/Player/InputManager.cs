@@ -8,7 +8,7 @@ public class InputManager : MonoBehaviour
 {
     private PlayerInput _playerInput;
     public PlayerInput.OnFootActions _onFootActions;
-    public AudioSource StepSound;
+
     private PlayerMotor _motor;
     private PlayerLook _look;
     
@@ -22,33 +22,23 @@ public class InputManager : MonoBehaviour
     }
 
     // Update is called once per frame
-
-  
     void FixedUpdate()
     {
         _motor.ProcessMove(_onFootActions.Movement.ReadValue<Vector2>());
-        
-            
-        
     }
 
     private void LateUpdate()
     {
         _look.ProcessLook(_onFootActions.Look.ReadValue<Vector2>());
-       
     }
 
     private void OnEnable()
     {
-        
         _onFootActions.Enable();
-        
     }
 
     private void OnDisable()
     {
-       
         _onFootActions.Disable();
-        
     }
 }

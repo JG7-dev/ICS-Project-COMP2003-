@@ -5,14 +5,17 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 using System;
 using System.Linq;
+using UnityEditor.UIElements;
+//using UnityEditor.UIElements;
 
 public class DirectedGraphView : GraphView
 {
     public readonly Vector2 DefaultNodeSize = new Vector2(150, 200);
+
     public DirectedGraphView()
     {
         styleSheets.Add(Resources.Load<StyleSheet>("DirectedGraph"));
-        SetupZoom(ContentZoomer.DefaultMinScale,ContentZoomer.DefaultMaxScale);
+        SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
 
         this.AddManipulator(new ContentDragger());
         this.AddManipulator(new SelectionDragger());
@@ -30,7 +33,7 @@ public class DirectedGraphView : GraphView
         var compatiblePorts = new List<Port>();
         ports.ForEach((port) =>
        {
-           if(startPort != port && startPort.node != port.node)
+           if (startPort != port && startPort.node != port.node)
            {
                compatiblePorts.Add(port);
            }
@@ -48,7 +51,7 @@ public class DirectedGraphView : GraphView
         var node = new DGNode
         {
             title = "START",
-            GUID = Guid.NewGuid().ToString(), //Generates an ID using inbuilt Unity system
+            GUID = "START", 
             Entry = true
         };
 
@@ -75,10 +78,9 @@ public class DirectedGraphView : GraphView
     {
         var node = new DGNode
         {
-            NodeLabel = nodeName,
             title = nodeName,
             GUID = Guid.NewGuid().ToString(), //Generates an ID using Unity
-            NodeDialog = new DGDialog(""), //NodeData
+            NodeDialog = new List<DGDialog>(), //NodeData
             Entry = false
         };
 
@@ -89,29 +91,95 @@ public class DirectedGraphView : GraphView
         inputPort.portName = "Input";
         node.inputContainer.Add(inputPort);
 
-        //Output Ports
-        var button = new Button(() => { AddOutputPort(node); });
-        button.text = "New Link";
-        node.titleContainer.Add(button);
+        //Add Output Port
+        var buttonOutPort = new Button(() => { AddOutputPort(node); });
+        buttonOutPort.text = "New Link";
+        node.titleContainer.Add(buttonOutPort);
+
+        //Add Dialog
+        var buttonDialog = new Button(() => {
+            node.NodeDialog.Add(new DGDialog(""));
+            AddDialog(node); });
+        buttonDialog.text = "New Dialog";
+        node.titleContainer.Add(buttonDialog);
 
         //dialog text
         var textField = new TextField(string.Empty);
         textField.RegisterValueChangedCallback(evt =>
         {
-            node.NodeDialog.dialog = evt.newValue;
+            node.NodeDialog[0].dialog = evt.newValue;
         });
         textField.SetValueWithoutNotify(node.title);
-        node.mainContainer.Add(textField);
+
+        //Func<VisualElement> makeItem = () => new Label();
+
+        //Action<VisualElement, int> bindItem = (e, i) => (e as Label).text = node.NodeDialog[i].dialog;
+
+        var dialogContainer = new Box();
+
+        //var listField = new ListView(node.NodeDialog, node.NodeDialog.Count(), makeItem, bindItem);
+        //listField.Add(textField);
+        //node.mainContainer.Add(listField); 
 
         node.RefreshPorts();
         node.RefreshExpandedState();
-        node.SetPosition(new Rect(Vector2.zero,DefaultNodeSize));
+        node.SetPosition(new Rect(Vector2.zero, DefaultNodeSize));
 
         return node;
     }
 
+    private void AddDialog(DGNode node, Character overridenCharacter = null, string overriddenDialog = "")
+    {
+        var dialogContainer = new Box();
+        node.mainContainer.Add(dialogContainer);
+
+        var characterField = new ObjectField("Character") { 
+            objectType = typeof(Character),
+            value = overridenCharacter
+        }; //Adds a Character object field
+
+
+        var textField = new TextField
+        {
+            value = overriddenDialog
+        };
+        textField.RegisterValueChangedCallback(evt => node.NodeDialog[node.mainContainer.IndexOf(dialogContainer) - 2].dialog = evt.newValue);
+
+
+        var deleteButton = new Button(() => RemoveDialog(node, dialogContainer))
+        {
+            text = "Delete"
+        };
+
+        dialogContainer.contentContainer.Add(new Label((node.mainContainer.IndexOf(dialogContainer) - 2).ToString()));
+        dialogContainer.contentContainer.Add(characterField);
+        dialogContainer.contentContainer.Add(textField);
+        dialogContainer.Add(deleteButton);
+
+        node.RefreshExpandedState(); //Refreshes node
+    }
+
+    internal void AddDialog(DGNode node, DGDialog nodeDialog)
+    {
+        AddDialog(node, nodeDialog.character, nodeDialog.dialog);
+    }
+
+    private void RemoveDialog(DGNode node, Box dialogContainer)
+    {
+        node.NodeDialog.RemoveAt(node.mainContainer.IndexOf(dialogContainer) - 2);
+        node.mainContainer.Remove(dialogContainer);
+        node.RefreshExpandedState(); //Refreshes node
+    }
+
+    private void UpdateDialog()
+    {
+
+    }
+
+    #region OutputPorts
     public void AddOutputPort(DGNode node, string overiddenPortName = "")
     {
+
         var generatedPort = GeneratePort(node, Direction.Output);
 
         var oldLabel = generatedPort.contentContainer.Q<Label>("type");
@@ -120,8 +188,8 @@ public class DirectedGraphView : GraphView
         var outputPortCount = node.outputContainer.Query("connector").ToList().Count;
         var outputPortName = $"Option {outputPortCount + 1}";
 
-        var portName = string.IsNullOrEmpty(overiddenPortName) 
-            ? $"Option {outputPortCount + 1}" 
+        var portName = string.IsNullOrEmpty(overiddenPortName)
+            ? $"Option {outputPortCount + 1}"
             : overiddenPortName;
 
         var textField = new TextField
@@ -163,4 +231,5 @@ public class DirectedGraphView : GraphView
         node.RefreshPorts();
         node.RefreshExpandedState();
     }
-}
+} 
+#endregion

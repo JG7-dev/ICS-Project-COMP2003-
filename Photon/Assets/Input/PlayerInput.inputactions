@@ -19,7 +19,7 @@
                     "type": "Value",
                     "id": "7480af47-654c-4392-b662-a1ce49d5ae7b",
                     "expectedControlType": "Vector2",
-                    "processors": "",
+                    "processors": "NormalizeVector2",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -160,7 +160,7 @@
                     "id": "12ae5be0-c58c-44fd-b9e8-696c6cec05f4",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "ScaleVector2(x=8,y=8)",
                     "groups": "",
                     "action": "Look",
                     "isComposite": false,

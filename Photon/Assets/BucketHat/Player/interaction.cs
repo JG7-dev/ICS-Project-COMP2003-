@@ -5,6 +5,11 @@ using UnityEngine;
 public class interaction : MonoBehaviour
 {
     public float distance = 2f;
+   
+    private void Awake()
+    {
+       
+    }
 
     // Update is called once per frame
     void Update()
@@ -28,7 +33,9 @@ public class interaction : MonoBehaviour
                 Debug.DrawRay(transform.position, transform.forward * distance, Color.red, 0.1f);
             }
         }
+      
     }
+   
 }
 
 public interface IInteeraction

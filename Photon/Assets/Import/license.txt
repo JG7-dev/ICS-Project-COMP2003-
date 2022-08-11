@@ -1,0 +1,11 @@
+Model Information:
+* title:	SVT-40 Rifle
+* source:	https://sketchfab.com/3d-models/svt-40-rifle-90fd497094af41eba58cada23306f5e2
+* author:	Naudaff3D (https://sketchfab.com/Naudaff3D)
+
+Model License:
+* license type:	CC-BY-ND-4.0 (http://creativecommons.org/licenses/by-nd/4.0/)
+* requirements:	Author must be credited. Modified versions can not be distributed. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "SVT-40 Rifle" (https://sketchfab.com/3d-models/svt-40-rifle-90fd497094af41eba58cada23306f5e2) by Naudaff3D (https://sketchfab.com/Naudaff3D) licensed under CC-BY-ND-4.0 (http://creativecommons.org/licenses/by-nd/4.0/)

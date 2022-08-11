@@ -5,7 +5,11 @@ using UnityEngine;
 public class music : MonoBehaviour
 {
     public static music instance;
+<<<<<<< Updated upstream
  
+=======
+
+>>>>>>> Stashed changes
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -17,6 +21,10 @@ public class music : MonoBehaviour
         {
             Destroy(gameObject);
         }
+<<<<<<< Updated upstream
 
+=======
+     
+>>>>>>> Stashed changes
     }
 }

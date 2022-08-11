@@ -4,7 +4,8 @@ using UnityEngine.AI;
 public class AiMovement : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent agent;
-
+    [SerializeField] float maxHealth = 100f;
+    float currentHp;
     [Range(0, 100)] [SerializeField] private float speed;
     [Range(0, 500)] [SerializeField] private float walkRadius;
 
@@ -15,6 +16,7 @@ public class AiMovement : MonoBehaviour
         if (agent == null) return;
         agent.speed = speed;
         agent.SetDestination(RandomLocation());
+        currentHp = maxHealth;
     }
 
     // Update is called once per frame
@@ -30,5 +32,19 @@ public class AiMovement : MonoBehaviour
         randomPos += transform.position;
         if (NavMesh.SamplePosition(randomPos, out var hit, walkRadius, 1)) finalPos = hit.position;
         return finalPos;
+    }
+    public void Takedamage(float damage)
+    {
+        currentHp -= damage;
+        if (currentHp <= 0)
+        {
+            Die();
+        }
+        }
+    void Die()
+    {
+        print(name + "was killed");
+        Destroy(gameObject);
+
     }
 }

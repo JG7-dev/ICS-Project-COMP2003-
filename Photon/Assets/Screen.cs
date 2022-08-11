@@ -9,6 +9,8 @@ public class Screen : Interactable
     private Renderer rend;
 
     int i = 0;
+    internal static int width;
+    internal static int height;
 
 
     // Start is called before the first frame update

@@ -7,7 +7,7 @@ public class Damageable : MonoBehaviour
     [SerializeField] float maxHealth = 100f;
     float currentHp;
 
-    [SerializeField] GameObject hitEffect;
+    
 
     void Awake()
     {
@@ -16,7 +16,7 @@ public class Damageable : MonoBehaviour
 
     public void Takedamage(float damage, Vector3 hitpos, Vector3 hitnormal)
     {
-        Instantiate(hitEffect, hitpos, Quaternion.LookRotation(hitnormal));
+       
         currentHp -= damage;
         if (currentHp <=0)
         {
